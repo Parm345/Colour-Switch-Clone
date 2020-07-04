@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+onready var global = get_node("/root/Global")
+
 export var extra_gravity = 500
 export var jump_force = 500
 
@@ -11,6 +13,8 @@ var Yellow = Color(0.964706,0.87451,0.054902,1)
 
 var currentColour = ""
 
+var attempts = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.set_mode(RigidBody2D.MODE_KINEMATIC)
@@ -20,12 +24,26 @@ func _ready():
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("jump"):
-		self.set_mode(RigidBody2D.MODE_RIGID)
+		self.set_mode(RigidBody2D.MODE_CHARACTER)
 		set_axis_velocity(Vector2(0, -jump_force))
-
+	position.x = clamp(position.y,240,240)
+	
+	if global.change_colour == true:
+		set_random_colour()
+		global.change_colour = false
+	
+	if global.colliding == true:
+		game_over()
+	
 func set_random_colour():
 	randomize()
 	var index = randi() % 4
+	
+	var colour_dict = {0: "Cyan", 1: "Yellow", 2: "Magenta", 3: "Purple"}
+	
+	while currentColour == colour_dict[index] and attempts <= 5:
+		randomize()
+		attempts += 1
 	
 	match(index):
 		0:
@@ -41,7 +59,11 @@ func set_random_colour():
 			currentColour = "Purple"
 			$Sprite.set_modulate(Purple)
 	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	attempts = 0
+	global.colour = currentColour
+	
+func game_over():
+	if global.colour != currentColour:
+		get_tree().change_scene("res://Scenes/Main.tscn") 
+		global.colliding = false
+ 
