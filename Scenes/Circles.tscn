@@ -74,6 +74,10 @@ rotation = 3.14159
 scale = Vector2( 10.0275, 8.33118 )
 build_mode = 1
 polygon = PoolVector2Array( -4.58811, 10.0449, -8.18702, 10.0449, -8.23565, 7.29375, -7.50614, 3.95719, -6.19303, 0.152339, -4.34495, -3.12568, -1.08648, -6.57932, 3.14466, -9.09637, 6.59766, -9.97441, 8.29984, -9.97441, 8.34848, -5.4086, 7.3758, -5.4086, 5.04138, -4.94031, 2.70696, -4.00373, 1.05341, -2.71593, -0.940578, -0.60863, -2.44823, 1.55721, -3.61544, 4.19133, -4.49085, 7.35229 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="SelfDestruct" type="Timer" parent="."]
 [connection signal="body_entered" from="Cyan" to="." method="_on_Cyan_body_entered"]
 [connection signal="body_entered" from="Yellow" to="." method="_on_Yellow_body_entered"]
 [connection signal="body_entered" from="Magenta" to="." method="_on_Magenta_body_entered"]

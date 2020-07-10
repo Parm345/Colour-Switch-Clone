@@ -14,9 +14,8 @@ switch_circle = ExtResource( 4 )
 position = Vector2( 240, 200 )
 scale = Vector2( 0.6, 0.6 )
 
-[node name="ColourSwitcher" parent="." instance=ExtResource( 4 )]
-position = Vector2( 240, 20 )
-
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 240, 360 )
-[connection signal="spawn_object" from="Player" to="." method="_on_Player_spawn_object"]
+
+[node name="ObjectSpawnLocation" type="Position2D" parent="."]
+position = Vector2( 240, -360 )

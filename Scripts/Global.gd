@@ -6,7 +6,7 @@ var change_colour = false
 var colour = ""
 
 #spawner vars
-var spawn_overide = false
+var spawnable= false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
