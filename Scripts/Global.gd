@@ -1,9 +1,12 @@
 extends Node
 
+#colour/collisoin releated vars
 var colliding = false
 var change_colour = false
 var colour = ""
 
+#spawner vars
+var spawn_overide = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

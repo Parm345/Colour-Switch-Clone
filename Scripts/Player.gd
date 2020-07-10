@@ -2,6 +2,8 @@ extends RigidBody2D
 
 onready var global = get_node("/root/Global")
 
+signal spawn_object
+
 export var extra_gravity = 500
 export var jump_force = 500
 
@@ -72,8 +74,8 @@ func game_over():
 		#death = true
 		global.colliding = false
 
-func _on_SpawingArea_area_exited(area):
-	print(area.name)
+func _on_SpawingArea_area_entered(area):
+	global.spawn_overide = true
 
-func _on_ScreenEnteringArea_area_entered(area):
-	print(area.name + " entered")
+func _on_SpawingArea_area_exited(area):
+	emit_signal("spawn_object")
