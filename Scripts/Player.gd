@@ -12,6 +12,7 @@ var Magenta = Color(1,0,0.501961,1)
 var Yellow = Color(0.964706,0.87451,0.054902,1)
 
 var currentColour = ""
+var death = false
 
 var attempts = 0
 
@@ -21,9 +22,10 @@ func _ready():
 	set_applied_force(Vector2(0, extra_gravity))
 	set_physics_process(true)
 	set_random_colour()
+	show()
 
 func _physics_process(delta):
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and death == false:
 		self.set_mode(RigidBody2D.MODE_CHARACTER)
 		set_axis_velocity(Vector2(0, -jump_force))
 	position.x = clamp(position.y,240,240)
@@ -65,5 +67,13 @@ func set_random_colour():
 func game_over():
 	if global.colour != currentColour:
 		get_tree().change_scene("res://Scenes/Main.tscn") 
+		#set_mode(RigidBody2D.MODE_STATIC)
+		#hide()
+		#death = true
 		global.colliding = false
- 
+
+func _on_SpawingArea_area_exited(area):
+	print(area.name)
+
+func _on_ScreenEnteringArea_area_entered(area):
+	print(area.name + " entered")
