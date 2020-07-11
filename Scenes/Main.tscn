@@ -18,4 +18,4 @@ scale = Vector2( 0.6, 0.6 )
 position = Vector2( 240, 360 )
 
 [node name="ObjectSpawnLocation" type="Position2D" parent="."]
-position = Vector2( 240, -360 )
+position = Vector2( 240, -250 )

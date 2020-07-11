@@ -78,7 +78,11 @@ polygon = PoolVector2Array( -4.58811, 10.0449, -8.18702, 10.0449, -8.23565, 7.29
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
 [node name="SelfDestruct" type="Timer" parent="."]
+wait_time = 5.0
 [connection signal="body_entered" from="Cyan" to="." method="_on_Cyan_body_entered"]
 [connection signal="body_entered" from="Yellow" to="." method="_on_Yellow_body_entered"]
 [connection signal="body_entered" from="Magenta" to="." method="_on_Magenta_body_entered"]
 [connection signal="body_entered" from="Purple" to="." method="_on_Purple_body_entered"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="timeout" from="SelfDestruct" to="." method="_on_SelfDestruct_timeout"]

@@ -19,5 +19,8 @@ shape = SubResource( 1 )
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
 [node name="SelfDestruct" type="Timer" parent="."]
+wait_time = 5.0
 [connection signal="body_entered" from="." to="." method="_on_ColourSwitcher_body_entered"]
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="timeout" from="SelfDestruct" to="." method="_on_SelfDestruct_timeout"]
